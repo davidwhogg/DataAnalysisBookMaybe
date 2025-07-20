@@ -1,0 +1,88 @@
+\documentclass[10pt]{book}
+\usepackage[utf8]{inputenc}
+\usepackage[letterpaper]{geometry}
+\usepackage{graphicx}
+
+% page layout issues
+\setlength{\oddsidemargin}{0.5\paperwidth}
+\addtolength{\oddsidemargin}{-2.54cm}
+\setlength{\textwidth}{12.25cm}
+\addtolength{\oddsidemargin}{-0.5\textwidth}
+\setlength{\evensidemargin}{\oddsidemargin}
+\renewcommand{\MakeUppercase}[1]{#1} % hacking the latex margin defaults; this is a bad hack
+
+% text typesetting issues
+\newcommand{\foreign}[1]{{\slshape #1}}
+\sloppy\sloppypar\raggedbottom\frenchspacing
+
+\title{\bfseries%
+The Theory and Practice of Data Analysis \\
+for the Physical Sciences and Engineering}
+\author{David W. Hogg}
+\date{July 2025}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\include{preface.tex}
+
+\chapter{How to structure a data analysis project}
+
+\part{Basics}
+
+\chapter{Fitting a model to data}
+
+\chapter{Making a measurement}
+
+\chapter{Estimating uncertainty}
+
+\chapter{Making a prediction}
+
+\chapter{Making a decision}
+
+\part{Theory}
+
+\chapter{Probability theory for data analysis}
+
+\chapter{Information theory}
+
+\chapter{Should a project be frequentist or Bayesian?}
+
+\chapter{Causal structure and causal inference}
+
+\chapter{Very small samples and \foreign{a posteriori} statistics}
+
+\part{Practice}
+
+\chapter{Instrument calibration}
+
+\chapter{Selection functions and censored data}
+
+\chapter{Interpolation and very flexible models}
+
+\chapter{Markov Chain Monte Carlo}
+
+\chapter{Regression and Machine Learning}
+
+\chapter{Model checking and visualization}
+
+\chapter{Missing and heteroskedastic data}
+
+\chapter{Robust methods and outliers}
+
+\chapter{Testing and diagnosis of code}
+
+\chapter{Writing a scientific paper}
+
+\appendix
+\part*{Appendices}\addcontentsline{toc}{part}{Appendices}\markboth{}{}
+
+\chapter{Useful probability distributions}
+
+\chapter{Properties of Gaussian distributions}
+
+\chapter{Numerical precision and code practices}
+
+\end{document}
