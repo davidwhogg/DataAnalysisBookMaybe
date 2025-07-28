@@ -1,19 +1,47 @@
+% to-do for this chapter:
+% -----------------------
+% - audit for voice / tense / first person / second person etc.
+
 \chapter*{Preface}\addcontentsline{toc}{chapter}{Preface}\markboth{Preface}{Preface}
 Data analysis is central to every one of the empirical sciences.
-Since the sciences are built from observations, it might not be hyperbole to say that every important problem or mistake in all of the sciences, ever, is either a mistake in the interpretation of data or else a mistake in the analysis of data.
+The sciences are built from observations, so it might not be hyperbole to say that every important problem or mistake in all of the sciences, ever, is either a mistake in the interpretation of data or else a mistake in the analysis of data.
 A theoretician might object: Theory is just as important as data!
 I don't disagree.
 Indeed, as I will discuss extensively in what follows, data analysis is driven by theoretical considerations just as much as it is driven by the detailed properties of the data and the hardware used to take the data.
 That is, I don't disagree that theory is important:
-I agree that it is important precisely because theory informs the interpretation and analysis of our data.
+I agree that it is important precisely \emph{because} theory informs the interpretation and analysis of our data.
 
-These considerations of theory can become problematic in contemporary discussions of science.
+When I did my very first data analyses (in the early 1990s), I didn't know anything, not even what the likelihood function is.
+Indeed, I didn't know about Bayes's rule.
+It was noted to me by my mentors\footnote{%
+My earliest mentors in data analysis were Rachel Webster (who was at CITA, now Melbourne), Scott Tremaine (who was at CITA), Judy Cohen (Caltech), and Gerry Neugebauer (who was at Caltech).}
+and peers that data analysis, which is essential to everything in physics, is not taught properly in the standard physics curriculum; everyone learns it by doing.
+Everyone who has thought about this for the last 30 years has come to the same conclusion:
+We should include data analysis (and other research practices like writing, computing, visualization, and project management) in the physics and astronomy curricula, both undergraduate and graduate.
+It is shocking that a typical PhD in physics has had many more months of training in quantum mechanics than in data analysis.
+Quantum mechanics is important to many physics areas.\footnote{%
+I use quantum mechanics here as my example---I could have used electromagnetism or statistical mechanics---in part because of the deep irony that the mathematics we learn in quantum mechanics will come up more than once in this book on data analysis.
+Quantum mechanics was the context in which I learned my linear algebra, and, importantly, the possibility that linear-algebra objects and operators could operate on a countably infinite number of dimensions.
+That will be important, for example, in \chapterref{ch:flexible}.}
+But data analysis is important to \emph{all} physics areas.
+
+Despite decades of conversations about these issues among physicists worldwide, almost nothing has changed in most physics and astronomy departments.
+Many PhD programs have inserted a semester of research practices or something equivalent.
+But the asymmetry remains:
+The physics curriculum is almost entirely about theory, while the true practices of physics center on empirical work with equipment and data.
+I think part of the problem is that no-one wants to give up any part of the theory (``you can't be a physicist if you don't know your quantum mechanics thoroughly'' has been said in a huge number of faculty meetings, and I don't necessarily disagree).
+This book is an attempt to exemplify a possible two-semester (yes, unfortunately two-semester, but see more discussion of this below) course on one of the important research practices, maybe the most important one.
+
+I mentioned considerations of theory.
+These have become a bit problematic in contemporary discussions of science.
 Scientists like to think of having ``facts'' that are incontrovertible.
-However, such ``facts'' are usually the outcome of data analyses, and, as I will discuss, all data analyses involve investigator choices and decisions.
-What is remarkable about the sciences---and data analysis in particular---is that we can come to very reliable conclusions, and make very accurate and successful predictions, even though everything we are doing has a very strong subjective component.
-That shows that, oddly, data analysis is adjacent to the philosophy of science.
-This book will not avoid these uncomfortable subjects; it will embrace and discuss these complexities.
+Importantly for everything that follows, these ``facts'' are usually the outcomes of data analyses.
+But, as I will discuss, all data analyses involve investigator choices and decisions (and theoretical frameworks).
+What is remarkable about the sciences---and data analysis in particular---is that we can come to very reliable conclusions, and make very accurate and successful predictions, even though everything we are doing has a very strong, historically and socially contingent, \emph{subjective} component.
+Data analysis is very much adjacent to the philosophy of science; data analysis is a philosophically rich discipline, getting, as it does, at age-old questions of epistemology.
+This book will not avoid these uncomfortable subjects; it will embrace and discuss epistemology, subjectivity, and other matters philosophical.
 
+\paragraph{What do I mean by ``data''?}
 Of course in different fields, the data takes\footnote{%
 In this book I will attempt to treat the noun form of ``data'' as a \emph{mass noun} like ``hair'' or ``grass.''
 Thus, for example, ``the data \emph{is} noisy.''
@@ -23,8 +51,126 @@ very different forms.
 It is very different when studying infant development, cell division, or the impact of tariffs on national productivity.
 Here I consider the kinds of data that appear in the physical sciences and in engineering domains.
 For the purposes of this book data will be sets or lists or rasterized images of numerical values.
-Each of these numerical values will be (usually) a measurements or instrument read-out,
+Each of these numerical values will be (usually) a measurement or an instrument read-out,
 and each will come (usually) with some kind of quantitative uncertainty estimate or precision expectation.
 
+In physics and astronomy, it is absolutely required that every measurement we make come with some kind of uncertainty estimate.
+This is good, and I'm proud of my fields of study for taking this hard line.
+However, as I will discuss in what follows, it is rare that these uncertainty estimates are highly accurate representations of our true uncertainties; indeed it is almost impossible to even know the variance (or, worse, higher moments) of any but the most simple of the possible noise sources in any real data.
+Nonetheless I am going to assume that, whenever we have data, we have some kind of estimate of the uncertainties on the data.
+Those estimates will permit us to build likelihood functions, and propagate uncertainty estimates to our final answers.
+
+\paragraph{Who are you, my reader?}
+I have promised myself that, in what follows, I will limit my use of the second person; it is my natural state to write to a mythical ``you,'' and I don't like it.
+That said, I write to ``you'' right now because I have a definite image of ``you'' in my head:
+You are a student who has data and has made some attempt to use it to measure something of interest to you.
+You did not take or get this data because you \emph{have to}---this is not a lab class---you got this data because you \emph{want to}---this is your own research program---and thus you are interested in getting the most out of the data that you (reasonably) can.
+And the data is complex, messy, noisy, contaminated, badly censored, uncalibrated, or mis-calibrated.
+You believe that if you had a little more support, or could do things a little bit more correctly, you could make a better measurement than anyone has made previously with similar data, or even the same data.\footnote{%
+A lot of my own research is peformed with archival or open data sets, and a lot of my own data taking, instrument calibration, and measurement making is done with the purpose of making and releasing open data sets.}
+You are pragmatic (you really do have to finish your paper or your dissertation) but you recognize that the introduction of certain more principled ideas into your project is likely to improve it.
+
+The parenthetical ``reasonably'' in the previous paragraph indicates that we will have limitations,
+limitations on our time, on our computing budget, on our cleverness, and on our patience.
+There are also limitations on what our various scientific communities will accept (or demand) in a data analysis.
+This book will be pragmatic, but principled; it is written in the service of real scientists doing real work in real scientific contexts.
+I will explicitly address all of these considerations in multiple locations in the book.
+
+Importantly, this is not your first rodeo:
+You are not completely new to data, and not completely new to the idea of probablility.
+You know what a weighted mean is, what a variance is, what a Gaussian probability distribution is, and so on.
+You've seen Bayes's rule before, probably many times.
+If you want to read this book but feel a bit soft on some of the basics, I have included a few appendices that might be useful to you to get you started.
+In addition to these brief appendices, introductory books abound \cite{stuff}.
+If you are entirely new to data, start with one of those, and come back here when you encounter problems that those books don't solve (and you will).
+
+\paragraph{How can this book be used?}
+As I just said, this is a book for practitioners.
+However, it can also be used by teachers, as the textbook in a course on data analysis at the PhD level.
+For a teacher that teaches at the pace I teach, this book has more than enough content for two semesters, or three quarters.
+It is a full-year course.
+That said, not everything here will be of interest to everyone.
+I will try to indicate at the beginning of each \chaptername{} what is most important about that \chaptername, in part so that a teacher can make good editorial decisions about what to include and what not to include.
+
+Importantly for its use, this book has been written such that each \chaptername{} can be read independently and on its own.
+It might make explicit references to other \chaptername s.
+But it will not make the \emph{assumption} that you have read the previous \chaptername s and memorized their content or conventions.
+Thus: Each \chaptername{} will re-define its variables and nomenclature.
+This means that \chaptername s can be used individually or arbitrarily re-ordered for classroom use.
+They can also be handed individually to students working along particular directions; those students don't need to read the whole book.
+
+\paragraph{Is this book Bayesian or frequentist?}
+It might surprise you to know that you don't have to adopt a strict statistical philosophy, and, even if you do, you don't have to (and frankly, probably can't) strictly adhere to that philosophy.
+This book is equally good for those of you who want to deliver frequentist measurements, unbiased by prior pdfs, and those of you who want to deliver good Bayesian predictions, tuned to be consistent with all prior knowledge.
+Superficial comparisons of frequentism and Bayesianism---and I am sorry to say many of the discussions out there are superficial or misleading---imply that investigators must choose one or the other.
+This is not true:
+One of the themes of this book will be that the frequentist and Bayesian tools are good for different things.
+Another theme of this book is that we will try to use the tools most appropriate to our scientific goals.
+I will try to be as specific as possible about these choices as we encounter them.
+
+Both frequentists and Bayesians will point to deep mathematics to argue that their approach is best.
+Indeed, both statistical philosophies rest on various proofs of optimality.
+But, of course, the optimality definitions are different in the two cases.
+If two investigators have two different goals, they will get different definitions of the word ``optimal.''
+So we will (try to) use frequentist approaches when they achieve our goals, and (try to) use Bayesian approaches when they achieve our goals.
+We are going to be pragmatic---sometimes it is easier to be a frequentist, and sometimes it is easier to be a Bayesian---but we are going to be very careful to understand what we are ``giving up'' or ``gaining'' when we switch from one philosophy to the other.
+There will almost never be a free lunch.
+
+\paragraph{What are the biggest themes of this book?}
+I've already touched on some of the themes, but let me be clear:
+These topics will come up repeatedly in this book, and they are all important to everything we do in data analysis.
+
+\subparagraph{Subjectivity}
+Every possible data analysis abounds with investigator choices.
+How should we think about these?
+How should we communicate these?
+How should we test our sensitivity to these?
+How do we make sure that our data analyses are correct---and what does it even mean for a data analysis to be ``correct''---in the face of these.
+
+\subparagraph{Mathematical rigor}
+Every data analysis involves approximations.
+That is, no data or analysis ever strictly obeys the mathematical properties required for proofs to be valid.
+However, it still makes sense to use methods that, in some limit, or under some set of (possibly substantially wrong) assumptions, are provably correct.
+It is better to do a data analysis that is correct \emph{under some circumstances} than one that is never correct.
+
+\subparagraph{Causal structure and forward models}
+In the physical sciences, we are usually asking questions about latent objects which cannot be observed directly.
+We want to know the local density of dark matter, or the contribution of some type of supernovae to the europium abundance of the Galaxy.
+We aren't usually---in the end---asking purely data-driven questions like ``how well do these data predict those data,'' though maybe we could be?
+When the question of interest is about a latent property, the best (only?) way to measure it is to build a forward model of the data, such that the latent property affects the data as expected theoretically.
+That is a kind of causal structure, and it is required (and required to be somewhat theoretically accurate) in order to constrain latent objects with observed data.
+Structuring these things involves myriad assumptions about measurement devices and theory; these assumptions create the subjectivity (above) and make necessary the communication (below).
+
+\subparagraph{The likelihood function}
+Both frequentists and Bayesians agree (with some caveats) that the likelihood function contains absolutely everything about your parameters that is encoded in your data, given your myriad assumptions.
+For frequentists, the likelihood function and its derivatives deliver best-possible estimators of parameters and uncertainties.
+For Bayesians, the likelihood function is the only permissible tool for updating beliefs or making predictions with new data.
+For both, likelihood ratios are used to compare models or parameter settings.
+Thus we will try always to produce and use likelihood functions in everything that follows.
+Fortunately, likelihood functions arise naturally when we have good forward models with good causal structure.
+Of course sometimes it is impossible to construct or compute a likelihood function, and then we will have to adapt appropriately.
+
+\subparagraph{Alignment of methods with goals}
+Different data analyses are performed with different goals in mind.
+Sometimes we want to make a measurement.
+Sometimes we want to predict new data.
+Sometimes we want to discover strange objects or features.
+Sometimes we want to compare qualitatively different models or explanations.
+Sometimes we want to make a decision or direct resources.
+Different goals are best served by different data-analytic practices.
+
+\subparagraph{Communication and communities}
+Given its intense subjectivity, data analysis is a human activity, involving human choices and human communities.
+A data analysis almost doesn't exist if it isn't communicated to a relevant community, and it almost isn't correct if it isn't communicated correctly to that community.
+Indeed, in what follows, the very definition of the word ``correct'' will involve communication:
+A data analysis is correct if it is designed and performed in a manner that is consistent with (a suitably complete expression of) the assumptions made by the data analyst.
+Expressing this, and checking this, is part of the communication that we do, and this communication is a part of data analysis just as much as any part of the data management, modeling, and computation.
+This communication involves not just words, but also visualizations.
+
+\paragraph{But why?}
 This book represents an attempt to write down a substantial fraction of everything I have learned in a career of data analysis.
 My field is astrophysics and cosmology, so most of my experience is with the kinds of data taken by astronomical instruments, and with the kinds of measurements that physicists and astronomers are interested in making.
+I have spent most of my career helping students and postdocs in my orbit to improve their data analyses, and in the process I personally learned---from them and from their projects---all of this.
+This book is my attempt to give this all back, and to expand the circle of people I can help with their data analyses.
+That's grandiose.
+Really I am writing this book because I can't stop myself.
