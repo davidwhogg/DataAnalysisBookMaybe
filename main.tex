@@ -11,13 +11,21 @@
 \setlength{\evensidemargin}{\oddsidemargin}
 \renewcommand{\MakeUppercase}[1]{#1} % hacking the latex margin defaults; this is a bad hack
 
-% text typesetting issues
+% text typesetting and font issues
+\renewcommand{\paragraph}[1]{\bigskip\noindent\textbf{#1}~---}
+\renewcommand{\subparagraph}[1]{\medskip\noindent\textsl{#1}~---}
 \newcommand{\foreign}[1]{{\slshape #1}}
 \sloppy\sloppypar\raggedbottom\frenchspacing
 
+% text macros
+\newcommand{\chapterref}[1]{\chaptername~\ref{#1}}
+
+% math macros
+\newcommand{\given}{\,|\,}
+
 \title{\bfseries%
-The Theory and Practice of Data Analysis \\
-for the Physical Sciences and Engineering}
+The Theory and Practice of Data Analysis
+for the Physical Sciences}
 \author{David W. Hogg}
 \date{July 2025}
 
@@ -26,7 +34,7 @@ for the Physical Sciences and Engineering}
 \maketitle
 \tableofcontents
 
-\include{preface.tex}
+\include{preface}
 
 \chapter{How to structure a data analysis project}
 
@@ -34,7 +42,9 @@ for the Physical Sciences and Engineering}
 
 \chapter{Fitting a model to data}
 
-\chapter{Making a measurement}
+\include{likelihood}
+
+\include{measurement}
 
 \chapter{Estimating uncertainty}
 
@@ -60,11 +70,11 @@ for the Physical Sciences and Engineering}
 
 \chapter{Selection functions and censored data}
 
-\chapter{Interpolation and very flexible models}
+\chapter{Interpolation and very flexible models}\label{ch:flexible}
 
 \chapter{Markov Chain Monte Carlo}
 
-\chapter{Regression and Machine Learning}
+\chapter{Regression, including machine-learning regressions}
 
 \chapter{Model checking and visualization}
 
