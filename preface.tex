@@ -116,13 +116,21 @@ So we will (try to) use frequentist approaches when they achieve our goals, and 
 We are going to be pragmatic---sometimes it is easier to be a frequentist, and sometimes it is easier to be a Bayesian---but we are going to be very careful to understand what we are ``giving up'' or ``gaining'' when we switch from one philosophy to the other.
 There will almost never be a free lunch.
 
+Oh and I am allergic to the word ``optimal.''
+There is no ``optimal'' way to proceed in general.
+But once you have specified your goals and assumptions sufficiently precisely, there is \emph{only one thing} you can do.
+Is that the optimal thing? Not really. It is \emph{the} thing.
+So the approach here will be to specify goals and assumptions precisely enough that the methodological approach flows directly from those choices.
+That is, all the emphasis is on making (explicitly) scientific choices; methods are then just consequences of those choices.
+
 \paragraph{What are the biggest themes of this book?}
 I've already touched on some of the themes, but let me be clear:
 These topics will come up repeatedly in this book, and they are all important to everything we do in data analysis.
 
 \subparagraph{Subjectivity}
 Every possible data analysis abounds with investigator choices.
-How should we think about these?
+Some of these choices are about investigator goals, some are about physical law, some are about instrumentation or noise, and some are made for computational or methodological efficiency.
+How should we think about these choices?
 How should we communicate these?
 How should we test our sensitivity to these?
 How do we make sure that our data analyses are correct---and what does it even mean for a data analysis to be ``correct''---in the face of these.
@@ -131,10 +139,10 @@ How do we make sure that our data analyses are correct---and what does it even m
 Every data analysis involves approximations.
 That is, no data or analysis ever strictly obeys the mathematical properties required for proofs to be valid.
 However, it still makes sense to use methods that, in some limit, or under some set of (possibly substantially wrong) assumptions, are provably correct.
-It is better to do a data analysis that is correct \emph{under some circumstances} than one that is never correct.
+It is better to do a data analysis that is correct \emph{under some circumstances} than one that is never correct under any.
 
 \subparagraph{Causal structure and forward models}
-In the physical sciences, we are usually asking questions about latent objects which cannot be observed directly.
+In the physical sciences, we are usually asking questions about latent objects that cannot be observed directly.
 We want to know the local density of dark matter, or the contribution of some type of supernovae to the europium abundance of the Galaxy.
 We aren't usually---in the end---asking purely data-driven questions like ``how well do these data predict those data,'' though maybe we could be?
 When the question of interest is about a latent property, the best (only?) way to measure it is to build a forward model of the data, such that the latent property affects the data as expected theoretically.
@@ -143,7 +151,7 @@ Structuring these things involves myriad assumptions about measurement devices a
 
 \subparagraph{The likelihood function}
 Both frequentists and Bayesians agree (with some caveats) that the likelihood function contains absolutely everything about your parameters that is encoded in your data, given your myriad assumptions.
-For frequentists, the likelihood function and its derivatives deliver best-possible estimators of parameters and uncertainties.
+For frequentists, the likelihood function and its derivatives deliver best-possible estimators of parameters, and associated uncertainties.
 For Bayesians, the likelihood function is the only permissible tool for updating beliefs or making predictions with new data.
 For both, likelihood ratios are used to compare models or parameter settings.
 Thus we will try always to produce and use likelihood functions in everything that follows.
@@ -172,5 +180,10 @@ This book represents an attempt to write down a substantial fraction of everythi
 My field is astrophysics and cosmology, so most of my experience is with the kinds of data taken by astronomical instruments, and with the kinds of measurements that physicists and astronomers are interested in making.
 I have spent most of my career helping students and postdocs in my orbit to improve their data analyses, and in the process I personally learned---from them and from their projects---all of this.
 This book is my attempt to give this all back, and to expand the circle of people I can help with their data analyses.
+
 That's grandiose.
 Really I am writing this book because I can't stop myself.
+
+\section{Comments on notation}
+
+\section{Acknowledgments}

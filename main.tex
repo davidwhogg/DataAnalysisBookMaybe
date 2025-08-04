@@ -4,11 +4,11 @@
 \usepackage{graphicx}
 
 % page layout issues
-\setlength{\oddsidemargin}{0.5\paperwidth}
-\addtolength{\oddsidemargin}{-2.54cm}
 \setlength{\textwidth}{12.25cm}
-\addtolength{\oddsidemargin}{-0.5\textwidth}
+\setlength{\oddsidemargin}{0.5\paperwidth}\addtolength{\oddsidemargin}{-2.54cm}\addtolength{\oddsidemargin}{-0.5\textwidth}
 \setlength{\evensidemargin}{\oddsidemargin}
+\setlength{\textheight}{22.86cm}
+\setlength{\topmargin}{0.5\paperheight}\addtolength{\topmargin}{-\headheight}\addtolength{\topmargin}{-\headsep}\addtolength{\topmargin}{-2.54cm}\addtolength{\topmargin}{-0.5\textheight}
 \renewcommand{\MakeUppercase}[1]{#1} % hacking the latex margin defaults; this is a bad hack
 
 % text typesetting and font issues
@@ -36,6 +36,20 @@ for the Physical Sciences}
 
 \include{preface}
 
+\chapter*{Subjects that need a home}\addcontentsline{toc}{chapter}{Subjects that need a home}\markboth{Subjects that need a home}{Subjects that need a home}
+This placeholder chapter is a place to put subjects that ought to go somewhere in the book, but I don't know where.
+As I figure out where, I will move these ideas to those places.
+\begin{itemize}
+  \item The significance of your data is not itself significant.
+  Consequence: Don't cut on SNR or significance; cut on first-order properties.
+  Related: You can't know second-order things about your data as well as you know first-order things.
+  Cut on first-order things in such a way that you mimic the SNR cut you have in mind, instead.
+  \item How about upper limits vs detections?
+  Related to forced photometry and catalog matching.
+  \item Catalog matching? Is this too astronomical?
+  \item \textsl{[Add more things above here.]}
+\end{itemize}
+
 \chapter{How to structure a data analysis project}
 
 \part{Basics}
@@ -48,9 +62,11 @@ for the Physical Sciences}
 
 \chapter{Estimating uncertainty}
 
-\chapter{Making a prediction}
+\chapter{Model selection or decision making}
 
-\chapter{Making a decision}
+\chapter{Predicting and betting}
+
+\chapter{Describing your model to others}\label{ch:notation}
 
 \part{Theory}
 
@@ -59,10 +75,24 @@ for the Physical Sciences}
 \chapter{Information theory}
 
 \chapter{Should a project be frequentist or Bayesian?}
+For insertion somewhere in this \chaptername.
+\begin{itemize}
+\item The idea that a prior can be because you think that the variable is actually, in the world, distributed like the prior.
+Or it can be because you have ignorance about the variable, and that ignorance has a probabilistic form.
+For example, angles can be uniformly distributed because a system is angle-mixed, or because \emph{you are not observing it at any special time}.
+\item The idea that the prior on a nuisance parameter can be literally \emph{part of your model}. for example, when a vector is isotropically distributed (like an angular momentum vector for planetary systems), then you know the distribution of this parameter and you can integrate it out, even if you are a frequentist.
+It becomes like a noise source.
+\end{itemize}
+
+\chapter{Choosing and testing prior pdfs}
 
 \chapter{Causal structure and causal inference}
 
 \chapter{Very small samples and \foreign{a posteriori} statistics}
+
+\chapter{Exact symmetries}\label{ch:symmetry}
+
+\chapter{Likelihood-free inference}
 
 \part{Practice}
 
@@ -72,17 +102,17 @@ for the Physical Sciences}
 
 \chapter{Interpolation and very flexible models}\label{ch:flexible}
 
+\chapter{Gaussian processes}
+
 \chapter{Markov Chain Monte Carlo}
 
 \chapter{Regression, including machine-learning regressions}
-
-\chapter{Model checking and visualization}
 
 \chapter{Missing and heteroskedastic data}
 
 \chapter{Robust methods and outliers}
 
-\chapter{Testing and diagnosis of code}
+\chapter{Model checking and visualization}
 
 \chapter{Writing a scientific paper}
 
@@ -93,6 +123,8 @@ for the Physical Sciences}
 
 \chapter{Properties of Gaussian distributions}
 
-\chapter{Numerical precision and code practices}
+\chapter{Data management}
+
+\chapter{Numerical precision and code practices; testing}
 
 \end{document}
